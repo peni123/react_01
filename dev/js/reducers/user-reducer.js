@@ -1,28 +1,28 @@
 export default function () {
-    return [
+	 return ([
         {
             id: 1,
-            first: "Bucky",
-            last: "Roberts",
+            first: "Maria",
+            last: "Petrova",
             age: 71,
-            description: "Bucky is a React developer and YouTuber",
-            thumbnail: "http://i.imgur.com/7yUvePI.jpg"
+            description: "A great grandma",
+            thumbnail: "http://imgur.com/gallery/LIv2d"
         },
         {
             id: 2,
-            first: "Joby",
-            last: "Wasilenko",
+            first: "Nedyalko",
+            last: "Dobrev",
             age: 27,
-            description: "Joby loves the Packers, cheese, and turtles.",
-            thumbnail: "http://i.imgur.com/52xRlm8.png"
+            description: "some bla",
+            thumbnail: "http://imgur.com/gallery/fkPqF"
         },
         {
             id: 3,
-            first: "Madison",
-            last: "Williams",
+            first: "Stoyana",
+            last: "Ivanova",
             age: 24,
-            description: "Madi likes her dog but it is really annoying.",
-            thumbnail: "http://i.imgur.com/4EMtxHB.png"
+            description: "plays viola",
+            thumbnail: "http://imgur.com/gallery/nlt28"
         }
-    ]
+    ])
 }
