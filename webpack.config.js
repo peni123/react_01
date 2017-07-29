@@ -1,32 +1,32 @@
-var webpack = require('webpack');
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
-	devtool: 'inline-source-map',
-	entry: [
-		'webpack-dev-server/client?http://127.0.0.1:8080/',
-		'webpack/hot/only-dev-server',
-		'./src'
-		],
-		output: {
-			path: path.join(__dirname, 'public'),
-			filename: 'bundle.js'
-		},
-		resolve: {
-			modules: ['node_modules', 'src'],
-			extensions: ['.js', '.json', '.jsx'],
-		},
-		module: {
-			loaders: [
-			{
-				test: /\.jsx?$/,
-				exclude: /node_modules/,
-				loaders: ['react-hot-loader', 'babel-loader?presets[]=react,presets[]=es2015']
-			}
-			]
-		},
-		plugins: [
-			new webpack.HotModuleReplacementPlugin(),
-			new webpack.NoErrorsPlugin()
-		]
-}
+    devServer: {
+        inline: true,
+        contentBase: './src',
+        port: 3000
+    },
+    devtool: 'cheap-module-eval-source-map',
+    entry: './dev/js/index.js',
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                loaders: ['babel'],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.scss/,
+                loader: 'style-loader!css-loader!sass-loader'
+            }
+        ]
+    },
+    output: {
+        path: 'src',
+        filename: 'js/bundle.min.js'
+    },
+    plugins: [
+        new webpack.optimize.OccurrenceOrderPlugin()
+    ]
+};
