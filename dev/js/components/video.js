@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import YouTube from 'react-youtube/dist/YouTube'
+import YouTube from 'react-youtube/dist/YouTube';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {changeVideo} from '../actions/change-video';
 
 class Video extends React.Component {
   render() {
@@ -13,7 +16,7 @@ class Video extends React.Component {
  
     return (
       <YouTube
-        videoId="3vJE3bVoF-Q"
+        videoId={this.props.videos.videoId}
         opts={opts}
         onReady={this._onReady}
       />
@@ -21,5 +24,18 @@ class Video extends React.Component {
   }
  
  }
-export default Video;
+
+ function matchDispatchToProps(dispatch) {
+  return bindActionCreators({changeVideo: changeVideo}, dispatch)
+}
+
+function mapStateToProps(state) {
+    return {
+        videos: state.videos,
+    };
+};
+
+export default connect(mapStateToProps, matchDispatchToProps)(Video);
+
+
  

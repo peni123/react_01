@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {openPlayer} from '../actions/open-player';
 import {closePlayer} from '../actions/close-player';
+import {changeVideo} from '../actions/change-video';
 import Modal  from 'react-bootstrap/lib/Modal';
 import OverlayTrigger  from 'react-bootstrap/lib/OverlayTrigger';
 import Button from 'react-bootstrap/lib/Button';
@@ -31,7 +32,8 @@ showPlayer () {
 					<ModalBody>
 						<h4>Paste here the link</h4>
 						<InputGroup>
-						<input></input>
+						<input ref={node=>{this.input=node}}></input>
+						<Button onClick={()=>{this.props.changeVideo(this.input.value); this.input.value = ''; console.log(this.input.value)}}></Button>
 						<Video/>
 						</InputGroup>
 					</ModalBody>
@@ -55,7 +57,7 @@ showPlayer () {
 };
 
 function matchDispatchToProps(dispatch) {
-	return bindActionCreators({openPlayer: openPlayer, closePlayer: closePlayer}, dispatch)
+	return bindActionCreators({openPlayer: openPlayer, closePlayer: closePlayer, changeVideo: changeVideo}, dispatch)
 }
 
 function mapStateToProps(state) {
@@ -64,5 +66,6 @@ function mapStateToProps(state) {
 		player: state.player
     };
 };
+
 
 export default connect(mapStateToProps, matchDispatchToProps)(Player);

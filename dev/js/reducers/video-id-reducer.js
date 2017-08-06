@@ -1,16 +1,13 @@
-export default function () {
-	 return ([
-        {
-            id: 1,
-            videoId:"3vJE3bVoF-Q"
-        },
-        {
-            id: 2,
-            videoId:"bc_28oOhoBQ"
-        },
-        {
-            id: 3,
-            videoId:"IR6smI_YJDE"
-        }
-    ])
+export default  function handleVisibility(state = {videoId: 'IR6smI_YJDE'}, action) {
+    console.log("action is called and the action is", action)
+ switch (action.type) {
+    case 'CHANGE_VIDEO':
+      return Object.assign({}, state, {
+        videoId: action.payload
+      })
+    
+    default:
+      return state
+  }
 }
+
