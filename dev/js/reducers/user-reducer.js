@@ -4,25 +4,28 @@ export default function () {
             id: 1,
             first: "Maria",
             last: "Petrova",
-            age: 71,
-            description: "A great grandma",
-            thumbnail: "http://imgur.com/gallery/LIv2d"
+            age: 28,
+            thumbnail: "http://imgur.com/gallery/LIv2d",
+            comments: [{content: '', date: ''}],
+            replies: [{content: '', date: ''}]
         },
         {
             id: 2,
-            first: "Nedyalko",
-            last: "Dobrev",
-            age: 27,
-            description: "some bla",
-            thumbnail: "http://imgur.com/gallery/fkPqF"
+            first: "Maria",
+            last: "Petrova",
+            age: 28,
+            thumbnail: "http://imgur.com/gallery/LIv2d",
+            comments: [{content: '', date: ''}],
+            replies: [{content: '', date: ''}]
         },
         {
             id: 3,
-            first: "Stoyana",
-            last: "Ivanova",
-            age: 24,
-            description: "plays viola",
-            thumbnail: "http://imgur.com/gallery/nlt28"
-        }
+            first: "Maria",
+            last: "Petrova",
+            age: 28,
+            thumbnail: "http://imgur.com/gallery/LIv2d",
+            comments: [{content: '', date: ''}],
+            replies: [{content: '', date: ''}]
+        }             
     ])
 }

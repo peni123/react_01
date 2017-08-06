@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import ModalHeader, {Header} from 'react-bootstrap/lib/ModalHeader';
 import Modal  from 'react-bootstrap/lib/Modal';
 import OverlayTrigger  from 'react-bootstrap/lib/OverlayTrigger';
@@ -28,13 +28,9 @@ class ModalItem extends Component{
   render() {
     return (
       <div className="modal-item">
-        <Button className="btn-modal"
-          onClick={this.open.bind(this)}>
+       
 
-          {this.props.buttonName}
-        </Button>
-
-        <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+        <Modal show={this.show}>
           <ModalHeader closeButton>
             <ModalTitle>Modal heading</ModalTitle>
           </ModalHeader>
@@ -56,3 +52,4 @@ class ModalItem extends Component{
 export default ModalItem;
 
 
+*/
