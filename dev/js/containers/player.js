@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {openPlayer} from '../actions/open-player';
 import {closePlayer} from '../actions/close-player';
 import {changeVideo} from '../actions/change-video';
+import {addComment} from '../actions/comments';
 import Modal  from 'react-bootstrap/lib/Modal';
 import OverlayTrigger  from 'react-bootstrap/lib/OverlayTrigger';
 import Button from 'react-bootstrap/lib/Button';
@@ -15,6 +16,7 @@ import ModalHeader  from 'react-bootstrap/lib/ModalHeader';
 import InputGroup  from 'react-bootstrap/lib/InputGroup';
 import Video from '../components/video';
 
+let counter = 0;
 
 class Player extends Component {
 
@@ -33,12 +35,22 @@ showPlayer () {
 						<h4>Paste here the link</h4>
 						<InputGroup>
 						<input ref={node=>{this.input=node}}></input>
-						<Button onClick={()=>{this.props.changeVideo(this.input.value); this.input.value = ''; console.log(this.input.value)}}></Button>
+						<Button onClick={()=>{this.props.changeVideo(this.input.value); this.input.value = '';}}></Button>
 						<Video/>
 						</InputGroup>
 					</ModalBody>
 					<ModalFooter>
-						<p>Here shall be the comments</p>
+						<h4>Comments Section</h4>
+						<InputGroup>
+						<input ref={node=>{this.input=node}}></input>
+						<Button onClick={()=>{this.props.addComment({text:this.input.value, id:counter++}); this.input.value = '';}}></Button>
+						</InputGroup>
+						{<ul>
+						{this.props.comments.map(comment => 
+							<li key={comment.id}>{comment.text}</li>
+						)}
+						</ul>}
+
 					</ModalFooter>
 				</Modal>
 			</div>
@@ -57,13 +69,18 @@ showPlayer () {
 };
 
 function matchDispatchToProps(dispatch) {
-	return bindActionCreators({openPlayer: openPlayer, closePlayer: closePlayer, changeVideo: changeVideo}, dispatch)
+	return bindActionCreators({openPlayer: openPlayer,
+							   closePlayer: closePlayer,
+							   changeVideo: changeVideo,
+							   addComment: addComment,
+							}, dispatch)
 }
 
 function mapStateToProps(state) {
     return {
         videos: state.videos,
-		player: state.player
+		player: state.player,
+		comments: state.comments
     };
 };
 

@@ -13,13 +13,19 @@ const persistedState = loadState();
 const store = createStore(allReducers, persistedState);
 
 store.subscribe(()=>{
-	saveState(store.getState())
+	saveState({comments:store.getState().comments})
 })
 
 
-ReactDOM.render(
-    <Provider store={store}>
+const render = () => {
+
+	ReactDOM.render(
+    <Provider store = {store}>
     	<App/>
     </Provider>,
     document.getElementById('root')
-);
+	);
+};
+
+store.subscribe(render)
+render();
