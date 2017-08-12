@@ -1,16 +1,11 @@
 
-/*let id = function() {
-    let counter = 0;
-    return function() { return counter++; };
-}();*/
-
 export function addComment(comment) {
 	console.log(comment)
 	let text = comment.text;
-	let commentId = comments.id;
-		
-	console.log(commentId)
-  return { type: 'ADD_COMMENT', text: text, id: commentId}
+	let id = comment.id;
+		console.log(text, id)
+
+  return { type: 'ADD_COMMENT', text: text, id: id}
 }
 
 export function addReply(reply) {
