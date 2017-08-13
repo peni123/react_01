@@ -12,38 +12,39 @@ $inactive-grey: #e6e6e6;
 .player-wrapper {
 	width: 100%;
 	padding: 30px;
-font-family: 'Proximanova-Regular', san-serif;
-color: $text-color;
-font-size: 16px;
+	font-family: 'Proximanova-Regular', san-serif;
+	color: $text-color;
+	font-size: 16px;
 
 	.embed-input {
-
+		margin: 0 auto;
+		padding-top: 50px;
+		
 		input {
 			width: 300px;
 			height: 35px;
 			padding: 5px;
-			
+
 			border-radius: 3px;
 			margin-right: 20px;
 			color: $dark-grey;
 			background-color: $light-grey;
-			text-transform: uppercase;
+			text-transform: capitalize;
 		}
-
 
 		.btn-default {
-		text-transform: uppercase;
-		color: $white;
-		font-weight: 700;
-		border: none;
-		background-color: $red;
-		border-radius: 3px;
+			text-transform: uppercase;
+			color: $white;
+			font-weight: 700;
+			border: none;
+			background-color: $red;
+			border-radius: 3px;
 
-		&:hover {
-			background-color: $dark-red;	
-			opacity: 0.7;
+			&:hover {
+				background-color: $dark-red;
+				opacity: 0.7;
+			}
 		}
-	}
 	}
 }
 
@@ -90,6 +91,7 @@ font-size: 16px;
 .comment {
 	width: 100%;
 	color: $light-grey;
+
 	input {
 		width: 100%;
 		border: 1px solid $light-grey;
@@ -120,6 +122,11 @@ font-size: 16px;
 		font-size: 18px;
 		margin: 0;
 		padding: 0;
+
+		&:hover {
+			opacity: 0.7;
+			cursor: pointer;
+		}
 	}
 
 	.date {
@@ -133,7 +140,6 @@ font-size: 16px;
 		justify-content: flex-start;
 		align-items: center;
 	}
-
 }
 
 div.btn-row {
@@ -141,9 +147,6 @@ div.btn-row {
 	justify-content: space-between;
 	padding-bottom: 30px;
 	position: relative;
-
-		
-	
 
 	.edit {
 		background-color: $black;
@@ -196,8 +199,12 @@ div.btn-row {
 		color: $light-blue;
 		font-size: 24px;
 		padding: 2px 4px;
-		
-		> span {
+
+		&:hover {
+			opacity: 0.7;
+		}
+
+		>span {
 			display: flex;
 			align-items: center;
 			font-size: 15px;
@@ -217,16 +224,18 @@ div.btn-row {
 	padding: 20px;
 	list-style: none;
 
-	li {
-
-		.comment {
-			padding-bottom: 25px;
-			color: $text-color;
-			font-size: 16px;
-
-			.icon > span {
-				color: $inactive-grey;
-			}
-		}
+	.comment {
+		padding-bottom: 5px;
+		color: $text-color;
+		font-size: 16px;
 	}
+
+	li {
+		padding-bottom: 25px;
+	}
+}
+
+.p-h-n {
+	padding-left: 0;
+	padding-right: 0;
 }

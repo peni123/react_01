@@ -19,72 +19,74 @@ import User from '../components/user';
 import {v4} from 'node-uuid';
 import {MdFavoriteBorder, MdFlag, MdShare, MdComment} from 'react-icons/lib/md';
 
-let counter = 0;
-
 class Player extends Component {
 
 showPlayer () {
 	
 	return (
 		<div className="player-wrapper">
-			<Button onClick={()=>{this.props.openPlayer(true)}}>Play</Button>
+			{/*<Button onClick={()=>{this.props.openPlayer(true)}}>Play</Button>*/}
 			<InputGroup className="embed-input">
-				<input ref={node=>{this.input=node}} placeholder="paste the YouTube id here"></input>
+				<input ref={node=>{this.input=node}} placeholder="YouTube ID"></input>
 				<Button onClick={()=>{this.props.changeVideo(this.input.value);
 				 this.input.value = ''; this.props.openPlayer(true)}}>
 				 EMBED
 				 </Button>
 			</InputGroup>
-			
-			<div className="modal-item">
-				<Modal className="modal" show={this.props.player.visibility}>
-					<ModalHeader className="modal-close-btn" closeButton onClick={()=>{this.props.closePlayer(false)}}>
-					</ModalHeader>
-					<ModalBody className="modal-body">
-						
-						<Video/>
-						<div className="btn-row">
-							<div className="social-btn">
-								<Button><MdFavoriteBorder className="icon"/><span>Like</span></Button>
-								<Button><MdShare className="icon"/>Share</Button>
-							</div>
-							<div className="action-btn">
-								<Button className="edit">Edit</Button>
-								<Button className="del">Delete</Button>
-							</div>
+			{/*Embed Input END*/}
+			<Modal className="modal" show={this.props.player.visibility}>
+				<ModalHeader className="modal-close-btn" closeButton onClick={()=>{this.props.closePlayer(false)}}>
+				</ModalHeader>
+				{/*ModalHeader END*/}
+				<ModalBody className="modal-body">
+					<Video/>
+				{/*Video END*/}
+					<div className="btn-row">
+						<div className="social-btn">
+							<Button><MdFavoriteBorder className="icon"/><span>Like</span></Button>
+							<Button><MdShare className="icon"/>Share</Button>
 						</div>
-						<InputGroup className="comment">
-							<input ref={node=>{this.input=node}} placeholder="...comment"
-							 onKeyDown={(e)=>{
-								if(e.keyCode == 13 && e.shiftKey == false) {
-									this.props.addComment({text:this.input.value, id:counter++});
-									this.input.value = '';
-								}
-							}}
+						<div className="action-btn">
+							<Button className="edit">Edit</Button>
+							<Button className="del">Delete</Button>
+						</div>
+					</div>
+				{/*Social buttons END*/}
+					<InputGroup className="comment">
+						<input ref={node=>{this.input=node}} placeholder="...comment"
+						 onKeyDown={(e)=>{
 
-									></input>
-							{/*<Button onClick={()=>{this.props.addComment({text:this.input.value, id:counter++}); this.input.value = '';}}></Button>*/}
-						</InputGroup>
-					</ModalBody>
-					<ModalFooter className="modal-footer">
-						<User></User>
-						{<ul className="comments-list">
-							{this.props.comments.map(comment => 
-								<li key={v4()}><div className="comment">{comment.text}</div>
+							if(e.keyCode == 13 && e.shiftKey == false) {
+								this.props.addComment({text:this.input.value, id:v4()});
+								this.input.value = '';
+
+							}
+						}}>
+						</input>
+					</InputGroup>
+				</ModalBody>
+				{/*ModalBody END*/}
+				<ModalFooter className="modal-footer">
+					
+					<User></User>
+					{/*User END*/}
+					<ul className="comments-list">
+						{this.props.comments.map(comment => 
+							<li key={v4()}>
+								<div className="comment">{comment.text}</div>
 								<div className="social-btn">
-								<Button><MdFavoriteBorder className="icon"/><span>Like</span></Button>
-								<Button><MdShare className="icon"/>Share</Button>
-								<Button><MdComment className="icon"/>comment</Button>
-								<MdFlag/>
-							</div>
-
-								</li>
-
-							)}
-						</ul>}
-					</ModalFooter>
-				</Modal>
-			</div>
+									<Button className="p-h-n"><MdFavoriteBorder className="icon"/><span>Like</span></Button>
+									<Button className="p-h-n"><MdShare className="icon"/><span>Share</span></Button>
+									<Button className="p-h-n"><MdComment className="icon"/><span>comment</span></Button>
+							  </div>
+							</li>
+						)}
+					</ul>
+				{/*Comments END*/}
+				</ModalFooter>
+				{/*ModalFooter END*/}
+			</Modal>
+		{/*Modal END*/}
 		</div>
 	);
 
@@ -100,19 +102,20 @@ showPlayer () {
 };
 
 function matchDispatchToProps(dispatch) {
-	return bindActionCreators({openPlayer: openPlayer,
-							   closePlayer: closePlayer,
-							   changeVideo: changeVideo,
-							   addComment: addComment,
-							}, dispatch)
+	return bindActionCreators({
+		openPlayer: openPlayer,
+		closePlayer: closePlayer,
+		changeVideo: changeVideo,
+		addComment: addComment,
+		}, dispatch)
 }
 
 function mapStateToProps(state) {
     return {
-        videos: state.videos,
-		player: state.player,
-		comments: state.comments
-    };
+      videos: state.videos,
+			player: state.player,
+			comments: state.comments
+	    };
 };
 
 
