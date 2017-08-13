@@ -6,7 +6,8 @@ import CommentsReducer from './comments-reducer';
 const allReducers = combineReducers({
     videos: VideoIdReducer,
     player: PlayerReducer,
-    comments: CommentsReducer
+    comments: CommentsReducer,
+    replies: CommentsReducer,
 });
 
 export default allReducers;

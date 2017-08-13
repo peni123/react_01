@@ -5,6 +5,7 @@ import Player from '../containers/player';
 
 require('../../scss/style.scss')
 
+
 const App = () => (
 	<div>
 		<Player/>

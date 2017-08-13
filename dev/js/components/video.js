@@ -7,11 +7,14 @@ import {changeVideo} from '../actions/change-video';
 class Video extends React.Component {
   render() {
     const opts = {
-      height: '390',
-      width: '640',
+      height: '290',
+      width: '500',
       playerVars: { // https://developers.google.com/youtube/player_parameters 
-        autoplay: 0
-      }
+        autoplay: 0,
+        modestbranding: 1,
+        controls: 0,
+      },
+
     };
  
     return (

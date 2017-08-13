@@ -17,6 +17,7 @@ import InputGroup  from 'react-bootstrap/lib/InputGroup';
 import Video from '../components/video';
 import User from '../components/user';
 import {v4} from 'node-uuid';
+import {MdFavoriteBorder, MdFlag, MdShare, MdComment} from 'react-icons/lib/md';
 
 let counter = 0;
 
@@ -26,13 +27,12 @@ showPlayer () {
 	
 	return (
 		<div className="player-wrapper">
-			<h1>to watch a video paste the YouTube id below</h1>
 			<Button onClick={()=>{this.props.openPlayer(true)}}>Play</Button>
-			<InputGroup>
+			<InputGroup className="embed-input">
 				<input ref={node=>{this.input=node}} placeholder="paste the YouTube id here"></input>
 				<Button onClick={()=>{this.props.changeVideo(this.input.value);
 				 this.input.value = ''; this.props.openPlayer(true)}}>
-				 PLAY
+				 EMBED
 				 </Button>
 			</InputGroup>
 			
@@ -45,25 +45,41 @@ showPlayer () {
 						<Video/>
 						<div className="btn-row">
 							<div className="social-btn">
-								<Button className="t-a-l">Like</Button>
-								<Button className="t-a-l">Share</Button>
+								<Button><MdFavoriteBorder className="icon"/><span>Like</span></Button>
+								<Button><MdShare className="icon"/>Share</Button>
 							</div>
 							<div className="action-btn">
-								<Button className="t-a-r">Edit</Button>
-								<Button className="t-a-r">Delete</Button>
+								<Button className="edit">Edit</Button>
+								<Button className="del">Delete</Button>
 							</div>
 						</div>
 						<InputGroup className="comment">
-							<input ref={node=>{this.input=node}} placeholder="...comment"></input>
-							<Button onClick={()=>{this.props.addComment({text:this.input.value, id:counter++}); this.input.value = '';}}></Button>
+							<input ref={node=>{this.input=node}} placeholder="...comment"
+							 onKeyDown={(e)=>{
+								if(e.keyCode == 13 && e.shiftKey == false) {
+									this.props.addComment({text:this.input.value, id:counter++});
+									this.input.value = '';
+								}
+							}}
+
+									></input>
+							{/*<Button onClick={()=>{this.props.addComment({text:this.input.value, id:counter++}); this.input.value = '';}}></Button>*/}
 						</InputGroup>
 					</ModalBody>
 					<ModalFooter className="modal-footer">
-						
 						<User></User>
 						{<ul className="comments-list">
 							{this.props.comments.map(comment => 
-								<li key={v4()}>{comment.text}</li>
+								<li key={v4()}><div className="comment">{comment.text}</div>
+								<div className="social-btn">
+								<Button><MdFavoriteBorder className="icon"/><span>Like</span></Button>
+								<Button><MdShare className="icon"/>Share</Button>
+								<Button><MdComment className="icon"/>comment</Button>
+								<MdFlag/>
+							</div>
+
+								</li>
+
 							)}
 						</ul>}
 					</ModalFooter>

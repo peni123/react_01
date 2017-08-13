@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-
-
 class User extends Component {
 
 showUser () {
@@ -13,7 +11,7 @@ showUser () {
 			</div>
 			<div className="user-name">
 				<h3>Stoyan Daskaloff</h3>
-				<div>{this.newDate=Date()}</div>
+				<div className="date">{this.newDate=Date()}</div>
 			</div>
 		</div>
 	);
